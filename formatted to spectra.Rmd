@@ -18,10 +18,12 @@ form_file_list <- c("Z:/MHC.LIBS/DATA/FORMATTED/17111401/MH6_17111401EDR_VACUUM_
 
 ```{r}
 avg_shots <- function(form_file) {
-  df <- read.csv(file = form_file)
+  df <- read.csv(file = form_file, sep = ";")
 }
 ```
 
 ```{r}
 df <- read.csv(file = "Z:/MHC.LIBS/DATA/FORMATTED/17111401/MH6_17111401EDR_VACUUM_T02L06_R269_spect.csv", check.names = FALSE)
+
+df <- df [-(1:22),] %?%
 ```
