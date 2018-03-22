@@ -25,5 +25,7 @@ avg_shots <- function(form_file) {
 ```{r}
 df <- read.csv(file = "Z:/MHC.LIBS/DATA/FORMATTED/17111401/MH6_17111401EDR_VACUUM_T02L06_R269_spect.csv", check.names = FALSE)
 
-df <- df [-(1:22),] %?%
+df <- df [-(1:22),]
+
+#STUCK!!!!!
 ```
