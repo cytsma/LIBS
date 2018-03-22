@@ -1,0 +1,18 @@
+---
+title: "Averaging shots"
+author: Cai Ytsma
+date: Mar 1 2018
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+#change csv file location
+df <- read.csv("li_test_spectra_extra.csv", check.names = FALSE) %>%
+  group_by(Sample) %>%
+  summarize_all(funs(mean))
+
+#change export destination
+write.csv(x = df, file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\li_test_spectra_extra.csv", row.names = FALSE)
+```

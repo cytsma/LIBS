@@ -1,0 +1,35 @@
+---
+title: "combine doped and natural datasets"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+SPECTRA
+```{r}
+doped_spectra <- read.csv(file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\doping dataset import\\lithium_spectra.csv", check.names = FALSE)
+
+natural_spectra <- read.csv(file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\RMSE-test dataset workup_import\\lithium_mars_test_spectra.csv", check.names = FALSE)
+
+best_spectra <- doped_spectra %>%
+  right_join(natural_spectra, by = "wave") %>%
+  mutate_all(funs(ifelse(is.na(.), 0, .)))
+#add way to sort alphabetically except for first column??
+
+write.csv(x = best_spectra, file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\doped and natural_dataset import\\lithium_spectra.csv", row.names = FALSE)
+```
+
+METADATA
+```{r}
+doped_metadata <- read.csv(file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\doping dataset import\\lithium_metadata.csv", check.names = FALSE)
+
+natural_metadata <- read.csv(file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\RMSE-test dataset workup_import\\lithium_mars_test_metadata.csv", check.names = FALSE)
+
+best_metadata <- doped_metadata %>%
+  full_join(natural_metadata) %>%
+  arrange(pkey)
+
+write.csv(x = best_metadata, file = "C:\\Users\\dyarsetup\\Dropbox\\Cai\\Thesis\\Spreadsheets\\doped and natural_dataset import\\lithium_metadata.csv", row.names = FALSE)
+```
